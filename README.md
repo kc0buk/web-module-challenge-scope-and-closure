@@ -108,6 +108,6 @@ addSix(21); // returns 27
 
 Follow these steps for completing your project.
 
-- [ ] Submit a pull request to merge <firstName-lastName> Branch into master (student's  Repo). **Please don't merge your own pull request** (https://github.com/kc0buk/web-module-challenge-scope-and-closure/pull/1)
-- [ ] Add your Team Lead as a reviewer on the pull request
+- [x] Submit a pull request to merge <firstName-lastName> Branch into master (student's  Repo). **Please don't merge your own pull request** (https://github.com/kc0buk/web-module-challenge-scope-and-closure/pull/1)
+- [x] Add your Team Lead as a reviewer on the pull request
 - [ ] Your Team Lead will count the project as complete by merging the branch back into master
