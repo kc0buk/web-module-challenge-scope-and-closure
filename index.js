@@ -27,12 +27,14 @@ function processFirstItem(stringList, callback) {
  * Study the code for counter1 and counter2. Answer the questions below.
  * 
  * 1. What is the difference between counter1 and counter2?
- * 
+ *    counter1 uses a closure (the second function), a count variable that is contained within the function scope, and another variable (counter1) that can maintain the count after the function terminates, while the count variable in counter2 is a global variable.
  * 2. Which of the two uses a closure? How can you tell?
- * 
- * 3. In what scenario would the counter1 code be preferable? In what scenario would counter2 be better? 
+ *    counter1 returns returns a function, which is the embedded function, aka a closure.
+ * 3. In what scenario would the counter1 code be preferable? In what scenario would counter2 be better?
+ *    counter1 may be prefereble when multiple independent counts need to be maintained (e.g. counter1, counter3, counter4) because each separate value of the count can be held in the variable, while the function an be resused by all variables. If I wanted to create multiple different counters with the structue of counter2, I would need to rewrite the function again each time.
  *
 */
+console.log('******************** TASK 1 ********************');
 
 // counter1 code
 function counterMaker() {
@@ -51,16 +53,23 @@ function counter2() {
   return count++;
 }
 
-
 /* Task 2: inning() 
 
 Write a function called `inning` that generates a random number of points that a team scored in an inning. This should be a whole number between 0 and 2. */
+console.log('******************** TASK 2 ********************');
 
-function inning(/*Code Here*/){
-
-    /*Code Here*/
-
+function inning(){
+  let score = 0;
+  function points() {
+    score = (Math.floor(Math.random() * 3));
+    return score;
+  }
+  return points;
 }
+
+const pointsScored = inning();
+
+console.log(pointsScored());
 
 /* Task 3: finalScore()
 
@@ -75,12 +84,23 @@ finalScore(inning, 9) might return:
 }
 
 */ 
+console.log('******************** TASK 3 ********************');
 
-function finalScore(/*code Here*/){
+function finalScore(callback, num){
+  let homeScore = 0;
+  let awayScore = 0;
+    for (let i = 0; i < num; i++) {
+      homeScore = homeScore + callback();
+      awayScore = awayScore + callback();
+      // console.log(i + ' : Home ' + homeScore + ' : ' + pointsScored() + ' : Away ' + awayScore + ' : ' + pointsScored());
+  }
 
-  /*Code Here*/
+  return {"Home" : homeScore, 
+          "Away" : awayScore};
 
 }
+
+console.log(finalScore(inning(),9));
 
 /* Task 4: 
 
