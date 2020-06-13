@@ -122,9 +122,47 @@ and returns the score at each pont in the game, like so:
 9th inning: 6 - 10
 
 Final Score: 6 - 10 */
+console.log('******************** TASK 4 ********************');
 
-function scoreboard(/* CODE HERE */) {
-  /* CODE HERE */
+function scoreboard(callback, num){
+  let homeScore = 0;
+  let awayScore = 0;
+  let inning = 0;
+  const ordinals = ['st','nd','rd','th'];
+    for (let i = 0; i < num; i++) {
+      if (inning === 0){
+        homeScore = homeScore + callback();
+        awayScore = awayScore + callback();
+        inning = ++inning;
+        console.log(`${inning}st inning: ${homeScore} - ${awayScore}`);
+      } else if (inning === 1) {
+          homeScore = homeScore + callback();
+          awayScore = awayScore + callback();
+          inning = ++inning;
+          console.log(`${inning}nd inning: ${homeScore} - ${awayScore}`);
+      } else if (inning === 2) {
+          homeScore = homeScore + callback();
+          awayScore = awayScore + callback();
+          inning = ++inning;
+          console.log(`${inning}rd inning: ${homeScore} - ${awayScore}`);
+      } else if (inning > 2 && inning < 8) {
+          homeScore = homeScore + callback();
+          awayScore = awayScore + callback();
+          inning = ++inning;
+          console.log(`${inning}th inning: ${homeScore} - ${awayScore}`);
+      } else if (inning === 8) {
+          homeScore = homeScore + callback();
+          awayScore = awayScore + callback();
+          inning = ++inning;
+          console.log(`${inning}th inning: ${homeScore} - ${awayScore}`);
+          console.log(`Final Score: ${homeScore} - ${awayScore}`);
+      }
+      
+      // console.log(i + ' : Home ' + homeScore + ' : ' + pointsScored() + ' : Away ' + awayScore + ' : ' + pointsScored());
+  }
+
 }
+
+console.log(scoreboard(inning(),9));
 
 
