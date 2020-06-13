@@ -27,11 +27,16 @@ function processFirstItem(stringList, callback) {
  * Study the code for counter1 and counter2. Answer the questions below.
  * 
  * 1. What is the difference between counter1 and counter2?
+ * 
  *    counter1 uses a closure (the second function), a count variable that is contained within the function scope, and another variable (counter1) that can maintain the count after the function terminates, while the count variable in counter2 is a global variable.
+ * 
  * 2. Which of the two uses a closure? How can you tell?
+ * 
  *    counter1 returns returns a function, which is the embedded function, aka a closure.
+ * 
  * 3. In what scenario would the counter1 code be preferable? In what scenario would counter2 be better?
- *    counter1 may be prefereble when multiple independent counts need to be maintained (e.g. counter1, counter3, counter4) because each separate value of the count can be held in the variable, while the function an be resused by all variables. If I wanted to create multiple different counters with the structue of counter2, I would need to rewrite the function again each time.
+ *   
+ *   counter1 may be prefereble when multiple independent counts need to be maintained (e.g. counter1, counter3, counter4) because each separate value of the count can be held in the variable, while the function an be resused by all variables. counter2 may be preferable when I need to have the value of count available on the global scope.
  *
 */
 console.log('******************** TASK 1 ********************');
