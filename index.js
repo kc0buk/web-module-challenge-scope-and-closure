@@ -28,11 +28,18 @@ function processFirstItem(stringList, callback) {
  * 
  * 1. What is the difference between counter1 and counter2?
  * 
+ *    counter1 uses a closure (the second function), a count variable that is contained within the function scope, and another variable (counter1) that can maintain the count after the function terminates, while the count variable in counter2 is a global variable.
+ * 
  * 2. Which of the two uses a closure? How can you tell?
  * 
- * 3. In what scenario would the counter1 code be preferable? In what scenario would counter2 be better? 
+ *    counter1 returns returns a function, which is the embedded function, aka a closure.
+ * 
+ * 3. In what scenario would the counter1 code be preferable? In what scenario would counter2 be better?
+ *   
+ *   counter1 may be prefereble when multiple independent counts need to be maintained (e.g. counter1, counter3, counter4) because each separate value of the count can be held in the variable, while the function an be resused by all variables. counter2 may be preferable when I need to have the value of count available on the global scope.
  *
 */
+console.log('******************** TASK 1 ********************');
 
 // counter1 code
 function counterMaker() {
@@ -51,16 +58,23 @@ function counter2() {
   return count++;
 }
 
-
 /* Task 2: inning() 
 
 Write a function called `inning` that generates a random number of points that a team scored in an inning. This should be a whole number between 0 and 2. */
+console.log('******************** TASK 2 ********************');
 
-function inning(/*Code Here*/){
-
-    /*Code Here*/
-
+function inning(){
+  let score = 0;
+  function points() {
+    score = (Math.floor(Math.random() * 3));
+    return score;
+  }
+  return points;
 }
+
+const pointsScored = inning();
+
+console.log(pointsScored());
 
 /* Task 3: finalScore()
 
@@ -75,12 +89,23 @@ finalScore(inning, 9) might return:
 }
 
 */ 
+console.log('******************** TASK 3 ********************');
 
-function finalScore(/*code Here*/){
+function finalScore(callback, num){
+  let homeScore = 0;
+  let awayScore = 0;
+    for (let i = 0; i < num; i++) {
+      homeScore = homeScore + callback();
+      awayScore = awayScore + callback();
+      // console.log(i + ' : Home ' + homeScore + ' : ' + pointsScored() + ' : Away ' + awayScore + ' : ' + pointsScored());
+  }
 
-  /*Code Here*/
+  return {"Home" : homeScore, 
+          "Away" : awayScore};
 
 }
+
+console.log(finalScore(inning(),9));
 
 /* Task 4: 
 
@@ -102,9 +127,48 @@ and returns the score at each pont in the game, like so:
 9th inning: 6 - 10
 
 Final Score: 6 - 10 */
+console.log('******************** TASK 4 ********************');
 
-function scoreboard(/* CODE HERE */) {
-  /* CODE HERE */
+function scoreboard(callback, num){
+  let homeScore = 0;
+  let awayScore = 0;
+  let inning = 0;
+  let scoreboardArray = [];
+  // const ordinals = ['st','nd','rd','th'];
+    for (let i = 0; i < num; i++) {
+      if (inning === 0){
+        homeScore = homeScore + callback();
+        awayScore = awayScore + callback();
+        inning = ++inning;
+        scoreboardArray.push(`${inning}st inning: ${homeScore} - ${awayScore}`);
+      } else if (inning === 1) {
+          homeScore = homeScore + callback();
+          awayScore = awayScore + callback();
+          inning = ++inning;
+          scoreboardArray.push(`${inning}nd inning: ${homeScore} - ${awayScore}`);
+      } else if (inning === 2) {
+          homeScore = homeScore + callback();
+          awayScore = awayScore + callback();
+          inning = ++inning;
+          scoreboardArray.push(`${inning}rd inning: ${homeScore} - ${awayScore}`);
+      } else if (inning > 2 && inning < 8) {
+          homeScore = homeScore + callback();
+          awayScore = awayScore + callback();
+          inning = ++inning;
+          scoreboardArray.push(`${inning}th inning: ${homeScore} - ${awayScore}`);
+      } else if (inning === 8) {
+          homeScore = homeScore + callback();
+          awayScore = awayScore + callback();
+          inning = ++inning;
+          scoreboardArray.push(`${inning}th inning: ${homeScore} - ${awayScore}`);
+          scoreboardArray.push(`Final Score: ${homeScore} - ${awayScore}`);
+      }
+      
+      // console.log(i + ' : Home ' + homeScore + ' : ' + pointsScored() + ' : Away ' + awayScore + ' : ' + pointsScored());
+  }
+  return scoreboardArray;
 }
+
+console.log(scoreboard(inning(),9));
 
 

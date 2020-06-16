@@ -27,10 +27,10 @@ There are layers upon layers of nested functions within the game of baseball. Yo
 
 ### Task 1 - Set Up Project and Tests
 
-1. Fork repo and add TL as collaborator on Github
-2. Clone _your_ fork (not Lambda's repo by mistake!)
-3. `cd` into your newly cloned repository
-4. Create a new branch by typing `git checkout -b <firstName-lastName>`
+[x] Fork repo and add TL as collaborator on Github
+[x] Clone _your_ fork (not Lambda's repo by mistake!)
+[x] `cd` into your newly cloned repository
+[x] Create a new branch by typing `git checkout -b <firstName-lastName>`
 5. Work on your branch, push commits and create PR as usual
 
 ### Task 2a - MVP code
@@ -42,6 +42,9 @@ Find the file `index.js` and complete the tasks.
 Edit the `ReadMe` file with your answers.
 
 1. In your own words, define closure (1-2 sentences).
+    
+    Closure is a function within a function that retains access to the variables in the outer function.
+
 2. Study the following code, then answer the questions below.
 
 ```js
@@ -63,8 +66,16 @@ dansRoll();
 ```
 
 a. Where is closure used in this code? How can you tell?
+
+    The closure is the inner function inside the personalDice function. 
+
 b. Compare and contrast calling `dansRoll` the first and second time. What is always the same? What could change?
+
+    Both times dansRoll() is called the name "Dan" will not change, however, the value of newRoll will change due to the Math.random method attached to newRoll.
+
 c. What is the lexical scope of `newRoll`? 
+
+    newRoll has local scope and function scope inside the personalDice function.
 
 ### Task 2c - Exit Ticket
 
@@ -108,6 +119,6 @@ addSix(21); // returns 27
 
 Follow these steps for completing your project.
 
-- [ ] Submit a pull request to merge <firstName-lastName> Branch into master (student's  Repo). **Please don't merge your own pull request**
-- [ ] Add your Team Lead as a reviewer on the pull request
+- [x] Submit a pull request to merge <firstName-lastName> Branch into master (student's  Repo). **Please don't merge your own pull request** (https://github.com/kc0buk/web-module-challenge-scope-and-closure/pull/1)
+- [x] Add your Team Lead as a reviewer on the pull request
 - [ ] Your Team Lead will count the project as complete by merging the branch back into master
